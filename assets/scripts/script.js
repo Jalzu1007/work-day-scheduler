@@ -85,6 +85,9 @@ $(".saveBtn").on("click", function() {
 
   // save the user inputs and change them to strings
   localStorage.setItem(timeBlock, JSON.stringify(userTask))
+
+  // display message when events have been added, changed, and deleted
+  alert("Your task has been saved!");
 });
 
 //access the user's tasks after refresh with local storage
