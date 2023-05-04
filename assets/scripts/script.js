@@ -5,11 +5,33 @@
  // TODO: Add code to display the current date in the header of the page.
 
 $(document).ready(function () {
-  //get the date with Moment
-  console.log(dayjs().format("dddd, MMMM Do"))
-  
+  var currentDate = dayjs();
+  var date = currentDate.date();
+  var suffix = getDayOfMonthSuffix(date);
+
+  //get the date with Day.JS and suffix
+  console.log(currentDate.format("dddd, MMMM D") + suffix);
+
   //put the date on the page
-  $("#currentDay").text(dayjs().format("dddd, MMMM Do"))
+$("#currentDay").text(currentDate.format("dddd, MMMM D") + suffix);
+});
+
+  // Added function with if statement to return the suffix
+  function getDayOfMonthSuffix(day) {
+    if (day >= 11 && day <= 13) {
+      return 'th';
+    }
+    switch (day % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+}
 
   //get current hour
   var currentHour = dayjs().hour();
@@ -75,4 +97,4 @@ $('#hour-14 .description').val(JSON.parse(localStorage.getItem("hour-14")));
 $('#hour-15 .description').val(JSON.parse(localStorage.getItem("hour-15")));
 $('#hour-16 .description').val(JSON.parse(localStorage.getItem("hour-16")));
 $('#hour-17 .description').val(JSON.parse(localStorage.getItem("hour-17"))); 
-});
+
