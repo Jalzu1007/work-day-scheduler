@@ -2,7 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
- // TODO: Add code to display the current date in the header of the page.
+// TODO: Add code to display the current date in the header of the page.
 
 $(document).ready(function () {
   var currentDate = dayjs();
@@ -12,25 +12,25 @@ $(document).ready(function () {
   //get the date with Day.JS and suffix
   console.log(currentDate.format("dddd, MMMM D") + suffix);
 
-  //put the date on the page
+//put the date on the page
 $("#currentDay").text(currentDate.format("dddd, MMMM D") + suffix);
 });
 
-  // Added function with if statement to return the suffix
-  function getDayOfMonthSuffix(day) {
-    if (day >= 11 && day <= 13) {
+// Added function with if statement to return the suffix
+function getDayOfMonthSuffix(day) {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  }
+  switch (day % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
       return 'th';
-    }
-    switch (day % 10) {
-      case 1:
-        return 'st';
-      case 2:
-        return 'nd';
-      case 3:
-        return 'rd';
-      default:
-        return 'th';
-    }
+  }
 }
 
   //get current hour
@@ -52,7 +52,7 @@ $(".time-block").each(function () {
   console.log(blockHour)
     
   //check and see if the currentHour > or < blockHour
-  //add css styling to the text areas
+  //add css styling to the text areas for past, present, and future
   if (currentHour === blockHour) {
     $(this).addClass("present");
   } else if (currentHour < blockHour) {
@@ -71,23 +71,23 @@ $(".time-block").each(function () {
   
 $(".saveBtn").on("click", function() {
     
-  //grab the user inputs that they put in
+  //grab the user inputs from time blocks
   var userTask = $(this).siblings(".description").val();
   var timeBlock = $(this).parent().attr("id");
 
-  //console log the info
+  //console log the information the user placed
   console.log("task = ", userTask);
   console.log("time-slot =", timeBlock);
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  
+
   // save the user inputs and change them to strings
   localStorage.setItem(timeBlock, JSON.stringify(userTask))
 });
 
-//access the user's tasks after refresh
+//access the user's tasks after refresh with local storage
 $('#hour-9 .description').val(JSON.parse(localStorage.getItem("hour-9")));
 $('#hour-10 .description').val(JSON.parse(localStorage.getItem("hour-10")));
 $('#hour-11 .description').val(JSON.parse(localStorage.getItem("hour-11")));
