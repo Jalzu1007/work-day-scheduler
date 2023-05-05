@@ -85,10 +85,16 @@ $(".saveBtn").on("click", function() {
 
   // save the user inputs and change them to strings
   localStorage.setItem(timeBlock, JSON.stringify(userTask))
-
-  // display message when events have been added, changed, and deleted
-  alert("Your task has been saved!");
+  
+  //show the modal
+$(".modal").css("display", "block");
+  
+  // add a click event listener to the modal "OK" button to close the modal
+$("#modal-save").on("click", function() {
+    $(".modal").css("display", "none");
+  });
 });
+
 
 //access the user's tasks after refresh with local storage
 $('#hour-9 .description').val(JSON.parse(localStorage.getItem("hour-9")));
