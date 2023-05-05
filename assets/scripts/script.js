@@ -95,7 +95,6 @@ $("#modal-save").on("click", function() {
   });
 });
 
-
 //access the user's tasks after refresh with local storage
 $('#hour-9 .description').val(JSON.parse(localStorage.getItem("hour-9")));
 $('#hour-10 .description').val(JSON.parse(localStorage.getItem("hour-10")));
